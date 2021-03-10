@@ -1,9 +1,18 @@
 //File: ClientHandler
-
+import java.lang.*;
+import java.io.*;
+import java.net.*;
 
 
 class ClientHandler implements Runnable
 {
+   static private int activeClients = 0;
+   
+   static public int ActiveClients()
+   {
+      return activeClients;
+   }
+
    private Socket server;
 
 		// Declare an input stream and String to store message from client		
@@ -15,13 +24,16 @@ class ClientHandler implements Runnable
       
    private ObjectInput inputObject = null;
    
-   public TCPClientHandler(Socket server)
+   public ClientHandler(Socket server)
    {
       this.server = server;
    }
    
    public void run()
    {
+      //Start Connection
+      activeClients++;
+   
       try
       {
          inputStream = new BufferedReader(
@@ -50,7 +62,7 @@ class ClientHandler implements Runnable
             
          }
          */
-         
+         //Connection Loop
          do
          {
    			if((line = inputStream.readLine()) != null)
@@ -69,7 +81,7 @@ class ClientHandler implements Runnable
             }
             catch(Exception e)
             {
-               System.out.print("Exception thown in inputStream Reading: " + e);
+               System.out.print("Exception thrown for Thread.sleep: " + e);
             }
 
          } while(true);
@@ -85,5 +97,7 @@ class ClientHandler implements Runnable
             System.out.print("Exception thown." + e);
          }
          
+         //End Connection
+         activeClients--;
    }
 }
