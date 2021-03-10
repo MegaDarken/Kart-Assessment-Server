@@ -17,11 +17,13 @@ s#n0classes
 s#p0doc
 s#q0test
 s#w0canvas
-!78;g
+!100;g
 %\011src%sClientHandler.java
 %\011src%sGameWorld.java
 %\011src%sRaceKart.java
-!78;f
+%\011src%sServer.java
+!100;f
 %\011src%sClientHandler.java
 %\011src%sGameWorld.java
 %\011src%sRaceKart.java
+%\011src%sServer.java
