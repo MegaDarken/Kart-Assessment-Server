@@ -18,15 +18,9 @@ public class GameWorld implements Runnable
    
    public GameWorld()
    {
-      if (AssessMode.AsServer)
-      {
-         //No kart
-         clientKart = -1;
-      }
-      else if (!AssessMode.AsServer)
-      {
-         //Fetch client kart from server
-      }
+      //No kart
+      clientKart = -1;
+      
       
       Karts = new RaceKart[MAXIMUM_RACEKARTS];
       controls = new byte[MAXIMUM_RACEKARTS][INPUT_KEY_MATRIX_SIZE];
@@ -70,20 +64,14 @@ public class GameWorld implements Runnable
       //For each kart in GameWorld
       for(int kart = 0; kart < MAXIMUM_RACEKARTS; kart++)
       {
-         if (kart == clientKart)
-         {
-            controls[kart] = AssessMode.GetFrame().GetPanel().GetInputKeyMatrix();
-         }
+         //if (kart == clientKart)
+         //{
+         //   controls[kart] = AssessMode.GetFrame().GetPanel().GetInputKeyMatrix();
+         //}
       
          
          Karts[kart].TickForward(controls[kart]);
          
-         
-         //Get Kart Image
-         
-         //Get Corrisonding label
-         
-         // Apply Image to label
          
       }
       
