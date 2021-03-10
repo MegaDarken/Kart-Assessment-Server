@@ -14,7 +14,9 @@ class Server
    static private ServerSocket service;
    
    static private int MaxClients;
-   static private int ActiveClients;
+   //static private int ActiveClients;
+   
+   static private boolean Running;
    
    public static void main( String args[] )
 	{
@@ -54,10 +56,12 @@ class Server
          //int maxClients = 2;
          //int activeClients = 0;
          Socket server = null;
+         Running = true;
          
          do
          {
-      
+            if (activeClients < maxClients)
+            {
 			   server = service.accept();
             
             ClientHandler handler = new ClientHandler(server);
@@ -66,19 +70,22 @@ class Server
             t.start();
             
             activeClients++;
+            }
             
-         }
-         while(activeClients < maxClients);
-			
-         while(true)
-         {
             //Keep server open,
             
             //Check connections? close if none are open
             
+            if ()
+            {
+            
+               //Stop server
+               Running = false;
+            }
          }
-         
-			//server.close();
+         while(Running);
+			
+         server.close();
 		}  
 		catch (IOException e)
 		{
