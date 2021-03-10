@@ -24,7 +24,7 @@ class Server
       int serverPort = DEFAULT_SERVER_PORT;
       
       MaxClients = DEFAULT_MAX_CLIENTS;
-      ActiveClients = DEFAULT_ACTIVE_CLIENTS;
+      //ActiveClients = DEFAULT_ACTIVE_CLIENTS;
       
       //Check ARGS
       
@@ -60,7 +60,7 @@ class Server
          
          do
          {
-            if (activeClients < maxClients)
+            if (ClientHandler.ActiveClients() < MaxClients)
             {
 			   server = service.accept();
             
@@ -69,14 +69,14 @@ class Server
             Thread t = new Thread(handler);
             t.start();
             
-            activeClients++;
+            //activeClients++;
             }
             
             //Keep server open,
             
             //Check connections? close if none are open
             
-            if ()
+            if (ClientHandler.ActiveClients() < 0)
             {
             
                //Stop server
