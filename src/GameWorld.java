@@ -18,8 +18,7 @@ public class GameWorld implements Runnable
    
    public GameWorld()
    {
-      //No kart
-      clientKart = -1;
+      //Fetch client kart from server
       
       
       Karts = new RaceKart[MAXIMUM_RACEKARTS];
@@ -31,16 +30,16 @@ public class GameWorld implements Runnable
 //       }
       
       //Debug
-      Karts[0] = new RaceKart("Red", 1, 1, 50, Math.PI*0.01);
+      Karts[0] = new RaceKart("Red", 1, 1, 50, Math.PI*0.05, 10, 20);
       Karts[0].SetPosition(10, 10);
       
-      Karts[1] = new RaceKart("Green", 1, 1, 50, Math.PI*0.01);
+      Karts[1] = new RaceKart("Green", 1, 1, 50, Math.PI*0.05, 10, 20);
       Karts[1].SetPosition(110, 10);
       
-      Karts[2] = new RaceKart("Blue", 1, 1, 50, Math.PI*0.01);
+      Karts[2] = new RaceKart("Blue", 1, 1, 50, Math.PI*0.05, 10, 20);
       Karts[2].SetPosition(10, 110);
       
-      Karts[3] = new RaceKart("Bot", 1, 1, 50, Math.PI*0.01);
+      Karts[3] = new RaceKart("Bot", 1, 1, 50, Math.PI*0.05, 10, 20);
       Karts[3].SetPosition(110, 110);
    }
    
@@ -59,21 +58,73 @@ public class GameWorld implements Runnable
       this.clientKart = value;
    }
    
+   public byte[][] GetControls()
+   {
+      return this.controls;
+   }
+   
    public void MoveKarts()
    {
       //For each kart in GameWorld
       for(int kart = 0; kart < MAXIMUM_RACEKARTS; kart++)
       {
-         //if (kart == clientKart)
-         //{
-         //   controls[kart] = AssessMode.GetFrame().GetPanel().GetInputKeyMatrix();
-         //}
+         if (kart == clientKart)
+         {
+            controls[kart] = AssessMode.GetFrame().GetPanel().GetInputKeyMatrix();
+         }
       
          
          Karts[kart].TickForward(controls[kart]);
          
          
+         //Get Kart Image
+         
+         //Get Corrisonding label
+         
+         // Apply Image to label
+         
       }
+      
+   }
+   
+   private void CheckCollsions()
+   {
+      
+      for(int i = 0; i < Karts.length; i++)
+      {
+         if (Karts[i] != null)
+         {
+            for(int j = 0; j < Karts.length; j++)
+            {
+               if (Karts[j] != null)
+               {
+                  if(i != j)
+                  {
+                     //Are they close to each other
+                     if(Karts[i].WithinCircularBounding(Karts[j]))
+                     {
+                        System.out.println("Close: " + i + " " + j);
+                     
+                        boolean isColliding = false;
+                        
+                        //For each corner
+                        isColliding = (isColliding || Karts[i].WithinBounding(Karts[j].FrontLeft()));
+                        isColliding = (isColliding || Karts[i].WithinBounding(Karts[j].FrontRight()));
+                        isColliding = (isColliding || Karts[i].WithinBounding(Karts[j].BackLeft()));
+                        isColliding = (isColliding || Karts[i].WithinBounding(Karts[j].BackRight()));
+                        
+                        //Collision is occouring?
+                        if (isColliding)
+                        {
+                           System.out.println("Collision: " + i + " " + j);
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+      
       
    }
    
@@ -82,7 +133,7 @@ public class GameWorld implements Runnable
    {
       MoveKarts();
       
-      
+      CheckCollsions();
    }
    
 }
