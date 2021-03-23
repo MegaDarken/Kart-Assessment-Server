@@ -15,6 +15,7 @@ class Server
    
    static private int MaxClients;
    //static private int ActiveClients;
+   static GameWorld world;
    
    static private boolean Running;
    
@@ -28,6 +29,9 @@ class Server
       
       //Check ARGS
       
+      
+      //Initalize World
+      world = new GameWorld();
       
       //Launch server
       LaunchServer(serverPort);
