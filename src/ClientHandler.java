@@ -197,9 +197,9 @@ class ClientHandler implements Runnable
                   //break;
                }
                
-               String[] splitLine = responseLine.split(" ");
+               //String[] splitLine = responseLine.split(" ");
                
-               line = splitLine[0];
+               //line = splitLine[0];
                
                switch(line)
                {
