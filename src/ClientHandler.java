@@ -87,6 +87,7 @@ class ClientHandler implements Runnable
    
       try
       {
+      /*
          inputStream = new BufferedReader(
 				new InputStreamReader(
 					server.getInputStream()
@@ -104,6 +105,7 @@ class ClientHandler implements Runnable
          inputObject = new ObjectInputStream(
             server.getInputStream()
          );
+         */
          
          index = 0;
          
@@ -119,8 +121,10 @@ class ClientHandler implements Runnable
             
             line = REQUEST_KART;
             
+            System.out.print("Sending: " + index);
             sendRequest();
             
+            System.out.print("Receiving: " + index);
             receiveRequest();
             
             if ( line.equals("CLOSE") )
@@ -201,17 +205,7 @@ class ClientHandler implements Runnable
 
 				   outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
             
-   				if((responseLine = inputStream.readLine()) != null)
-   				{
-   					System.out.println("SERVER: " + responseLine);
-   				}
-               
-               if ( responseLine.equals("CLOSE") )
-               {
-                  //Send signal to exit
-                  //break;
-               }
-               
+   				               
                //String[] splitLine = responseLine.split(" ");
                
                //line = splitLine[0];
@@ -232,6 +226,17 @@ class ClientHandler implements Runnable
                      ServerMain.world.GetKarts()[index] = currentKart;
                      break;
                
+               }
+               
+               if((responseLine = inputStream.readLine()) != null)
+   				{
+   					System.out.println("SERVER: " + responseLine);
+   				}
+               
+               if ( responseLine.equals("CLOSE") )
+               {
+                  //Send signal to exit
+                  //break;
                }
                
                try
