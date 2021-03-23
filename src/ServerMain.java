@@ -2,7 +2,7 @@
 import java.io.*;
 import java.net.*;
 
-class Server
+class ServerMain
 {
    static final int DEFAULT_SERVER_PORT = 25610;
    
