@@ -68,10 +68,7 @@ public class GameWorld implements Runnable
       //For each kart in GameWorld
       for(int kart = 0; kart < MAXIMUM_RACEKARTS; kart++)
       {
-         if (kart == clientKart)
-         {
-            controls[kart] = AssessMode.GetFrame().GetPanel().GetInputKeyMatrix();
-         }
+         
       
          
          Karts[kart].TickForward(controls[kart]);
