@@ -127,8 +127,8 @@ class ClientHandler implements Runnable
             System.out.print("Sending: " + index);
             sendRequest();
             
-            if ()
-            else if ( line.equals("CLOSE") )
+            //if ()
+            if ( line.equals("CLOSE") )
             {
                break;
             }
@@ -209,15 +209,16 @@ class ClientHandler implements Runnable
                   case REQUEST_CONTROL:
                      
                      //Get object
-                     byte[] currentControl = (byte[]) inputObject.readObject();
-                     ServerMain.world.GetControls()[index] = currentControl;
+                     
+                     receiveControl();
+                     
                      break;
                   
                   case REQUEST_KART:
                      
                      //Get object
-                     RaceKart currentKart = (RaceKart) inputObject.readObject();
-                     ServerMain.world.GetKarts()[index] = currentKart;
+                     receiveKart();
+                     
                      break;
                
                }
@@ -299,23 +300,16 @@ class ClientHandler implements Runnable
                      
                      //Get object
                      
-                     // write object to stream
-                     outputObject.writeObject(ServerMain.world.GetControls()[index]);
-            
-                     // send it
-                     outputObject.flush();
+                     sendControl();
+                     
                      break;
                   
                   case REQUEST_KART:
                      
                      //Get object
                      //Server.world.GetKarts()[index];//RaceKart currentKart = (RaceKart) inputObject.readObject();
+                     sendKart();
                      
-                     // write object to stream
-                     outputObject.writeObject(ServerMain.world.GetKarts()[index]);
-            
-                     // send it
-                     outputObject.flush();
                      break;
                
                }
@@ -338,29 +332,45 @@ class ClientHandler implements Runnable
    
    }
    
-   private void ReceiveMessage()
+   private void receiveMessage()
    {
    
    }
    
    private void sendKart()
    {
-   
+      // write object to stream
+      outputObject.writeObject(ServerMain.world.GetKarts()[index]);
+
+      // send it
+      outputObject.flush();
    }
    
-   private void ReceiveKart()
+   private void receiveKart()
    {
-   
+      //Collect kart
+      RaceKart currentKart = (RaceKart) inputObject.readObject();
+      
+      //Place into world
+      ServerMain.world.GetKarts()[index] = currentKart;
    }
    
    private void sendControl()
    {
+      // write object to stream
+      outputObject.writeObject(ServerMain.world.GetControls()[index]);
    
+      // send it
+      outputObject.flush();
    }
    
-   private void ReceiveControl()
+   private void receiveControl()
    {
-   
+      //Collect control
+      byte[] currentControl = (byte[]) inputObject.readObject();
+      
+      //Place into world
+      ServerMain.world.GetControls()[index] = currentControl;
    }
    
    
