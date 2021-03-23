@@ -97,6 +97,10 @@ class ClientHandler implements Runnable
 				server.getOutputStream()
 			);
          
+         outputObject = new ObjectOutputStream(
+            server.getOutputStream()
+         );
+         
          inputObject = new ObjectInputStream(
             server.getInputStream()
          );
