@@ -105,13 +105,19 @@ class ClientHandler implements Runnable
             server.getInputStream()
          );
          
+         index = 0;
+         
          //Connection Loop
          do
          {
+            index = index % ServerMain.world.GetKarts().length;
+         
    			/*if((line = inputStream.readLine()) != null)
    			{
    				outputStream.writeBytes( line + "\n" );
    			}*/
+            
+            line = REQUEST_KART;
             
             sendRequest();
             
@@ -130,6 +136,8 @@ class ClientHandler implements Runnable
             {
                System.out.print("Exception thrown for Thread.sleep: " + e);
             }
+            
+            index++;
 
          } while(true);
          
