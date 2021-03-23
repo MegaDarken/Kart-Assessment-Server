@@ -240,14 +240,7 @@ class ClientHandler implements Runnable
                   //break;
                }
                
-               try
-               {
-                  Thread.sleep(10);
-               }
-               catch(Exception e)
-               {
-                  System.out.print("Exception thrown for Thread.sleep: " + e);
-               }
+               AttemptSleep(10);
                
             //} while(true);
             
@@ -387,7 +380,14 @@ class ClientHandler implements Runnable
    
    private void AttemptSleep(int duration)
    {
-   
+      try
+      {
+         Thread.sleep(duration);
+      }
+      catch(Exception e)
+      {
+         System.out.print("Exception thrown for Thread.sleep: " + e);
+      }
    }
    
 }
