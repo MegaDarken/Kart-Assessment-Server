@@ -298,6 +298,8 @@ class ClientHandler implements Runnable
                   //break
                }
                
+               //Respond
+               
                //Split line into parts
                String[] splitLine = line.split(SPLIT_CHAR);
                
@@ -350,6 +352,42 @@ class ClientHandler implements Runnable
             System.out.print("Exception thown." + e);
          }
       }
+   }
+   
+   private void sendMessage()
+   {
+   
+   }
+   
+   private void ReceiveMessage()
+   {
+   
+   }
+   
+   private void sendKart()
+   {
+   
+   }
+   
+   private void ReceiveKart()
+   {
+   
+   }
+   
+   private void sendControl()
+   {
+   
+   }
+   
+   private void ReceiveControl()
+   {
+   
+   }
+   
+   
+   private void AttemptSleep(int duration)
+   {
+   
    }
    
 }
