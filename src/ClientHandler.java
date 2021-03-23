@@ -121,13 +121,14 @@ class ClientHandler implements Runnable
             
             line = REQUEST_KART;
             
-            System.out.print("Sending: " + index);
-            sendRequest();
-            
             System.out.print("Receiving: " + index);
             receiveRequest();
             
-            if ( line.equals("CLOSE") )
+            System.out.print("Sending: " + index);
+            sendRequest();
+            
+            if ()
+            else if ( line.equals("CLOSE") )
             {
                break;
             }
@@ -261,7 +262,7 @@ class ClientHandler implements Runnable
 			}
 			catch (IOException e)
 			{
-				System.err.println("IOException:  " + e);
+				System.err.println("IOException: " + e);
 			}
 
       }
