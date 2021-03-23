@@ -180,8 +180,8 @@ class ClientHandler implements Runnable
             
             //do 
             //{
-               System.out.print("CLIENT: ");
-               line = scanner.nextLine(); 
+               //System.out.print("CLIENT: ");
+               //line = scanner.nextLine(); 
                //index = scanner.nextLine();
 
 				   outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
