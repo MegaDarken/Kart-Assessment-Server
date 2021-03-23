@@ -133,14 +133,7 @@ class ClientHandler implements Runnable
                break;
             }
             
-            try
-            {
-               Thread.sleep(1);
-            }
-            catch(Exception e)
-            {
-               System.out.print("Exception thrown for Thread.sleep: " + e);
-            }
+            AttemptSleep(1);
             
             index++;
 
@@ -328,14 +321,7 @@ class ClientHandler implements Runnable
                }
 
                
-               try
-               {
-                  //Thread.sleep(1);
-               }
-               catch(Exception e)
-               {
-                  System.out.print("Exception thrown for Thread.sleep: " + e);
-               }
+               AttemptSleep(1);
    
             //} while(true);
             
