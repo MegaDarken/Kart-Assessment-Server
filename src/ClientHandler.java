@@ -104,10 +104,14 @@ class ClientHandler implements Runnable
          //Connection Loop
          do
          {
-   			if((line = inputStream.readLine()) != null)
+   			/*if((line = inputStream.readLine()) != null)
    			{
    				outputStream.writeBytes( line + "\n" );
-   			}
+   			}*/
+            
+            sendRequest();
+            
+            receiveRequest();
             
             if ( line.equals("CLOSE") )
             {
@@ -127,8 +131,7 @@ class ClientHandler implements Runnable
          
 			
 			// Comment out/remove the outputStream and server close statements if server should remain live
-			outputStream.close();
-			inputStream.close();
+			CloseConnections();
          
          }
          catch (Exception e)
@@ -207,14 +210,14 @@ class ClientHandler implements Runnable
                      
                      //Get object
                      byte[] currentControl = (byte[]) inputObject.readObject();
-                     Server.world.GetControls()[index] = currentControl;
+                     ServerMain.world.GetControls()[index] = currentControl;
                      break;
                   
                   case REQUEST_KART:
                      
                      //Get object
                      RaceKart currentKart = (RaceKart) inputObject.readObject();
-                     Server.world.GetKarts()[index] = currentKart;
+                     ServerMain.world.GetKarts()[index] = currentKart;
                      break;
                
                }
@@ -291,7 +294,7 @@ class ClientHandler implements Runnable
                      //Get object
                      
                      // write object to stream
-                     outputObject.writeObject(Server.world.GetControls()[index]);
+                     outputObject.writeObject(ServerMain.world.GetControls()[index]);
             
                      // send it
                      outputObject.flush();
@@ -303,7 +306,7 @@ class ClientHandler implements Runnable
                      //Server.world.GetKarts()[index];//RaceKart currentKart = (RaceKart) inputObject.readObject();
                      
                      // write object to stream
-                     outputObject.writeObject(Server.world.GetKarts()[index]);
+                     outputObject.writeObject(ServerMain.world.GetKarts()[index]);
             
                      // send it
                      outputObject.flush();
