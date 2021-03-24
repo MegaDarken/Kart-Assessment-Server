@@ -239,10 +239,6 @@ class ClientHandler implements Runnable
             //} while(true);
             
 			}
-         catch (ClassNotFoundException e)
-         {
-            System.err.println("Class not found: " + e);
-         }
 			catch (UnknownHostException e)
 			{
 				System.err.println("Trying to connect to unknown host: " + e);
@@ -339,38 +335,74 @@ class ClientHandler implements Runnable
    
    private void sendKart()
    {
-      // write object to stream
-      outputObject.writeObject(ServerMain.world.GetKarts()[index]);
-
-      // send it
-      outputObject.flush();
+      try
+      {
+         // write object to stream
+         outputObject.writeObject(ServerMain.world.GetKarts()[index]);
+   
+         // send it
+         outputObject.flush();
+      }
+		catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+		}
    }
    
    private void receiveKart()
    {
-      //Collect kart
-      RaceKart currentKart = (RaceKart) inputObject.readObject();
-      
-      //Place into world
-      ServerMain.world.GetKarts()[index] = currentKart;
+      try
+      {
+         //Collect kart
+         RaceKart currentKart = (RaceKart) inputObject.readObject();
+         
+         //Place into world
+         ServerMain.world.GetKarts()[index] = currentKart;
+      }
+      catch (ClassNotFoundException e)
+      {
+         System.err.println("Class not found: " + e);
+      }
+		catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+		}
    }
    
    private void sendControl()
    {
-      // write object to stream
-      outputObject.writeObject(ServerMain.world.GetControls()[index]);
-   
-      // send it
-      outputObject.flush();
+      try
+      {
+         // write object to stream
+         outputObject.writeObject(ServerMain.world.GetControls()[index]);
+      
+         // send it
+         outputObject.flush();
+      }
+		catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+		}
    }
    
    private void receiveControl()
    {
-      //Collect control
-      byte[] currentControl = (byte[]) inputObject.readObject();
-      
-      //Place into world
-      ServerMain.world.GetControls()[index] = currentControl;
+      try
+      {
+         //Collect control
+         byte[] currentControl = (byte[]) inputObject.readObject();
+         
+         //Place into world
+         ServerMain.world.GetControls()[index] = currentControl;
+      }
+      catch (ClassNotFoundException e)
+      {
+         System.err.println("Class not found: " + e);
+      }
+		catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+		}
    }
    
    
