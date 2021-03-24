@@ -323,14 +323,30 @@ class ClientHandler implements Runnable
       }
    }
    
-   private void sendMessage()
+   private void sendMessage(String message)
    {
-   
+      try
+      {
+         outputStream.writeBytes( message + "\n" );
+      }
+      catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+      }
    }
    
-   private void receiveMessage()
+   private String receiveMessage() 
    {
-   
+      try 
+      {
+         return inputStream.readLine();
+         
+      } 
+      catch (IOException e)
+		{
+			System.err.println("IOException:  " + e);
+         return null;
+      }
    }
    
    private void sendKart()
