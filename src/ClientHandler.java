@@ -198,7 +198,10 @@ class ClientHandler implements Runnable
                //index = scanner.nextLine();
 
 				   outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
-            
+               
+               line = inputStream.readLine();
+               
+               outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
    				               
                //String[] splitLine = responseLine.split(" ");
                
@@ -274,6 +277,8 @@ class ClientHandler implements Runnable
       				
                   outputStream.writeBytes( line + "\n" );
       			}
+               
+               line = inputStream.readLine();
                
                if ( line.equals("CLOSE") )
                {
