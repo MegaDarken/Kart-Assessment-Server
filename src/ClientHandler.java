@@ -197,11 +197,14 @@ class ClientHandler implements Runnable
                //line = scanner.nextLine(); 
                //index = scanner.nextLine();
 
-				   outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
+				   sendMessage( line + index );
+            
+   				if((line = receiveMessage()) != null)
+   				{
+   					System.out.println("SERVER: " + line);
+   				}
                
-               line = inputStream.readLine();
-               
-               outputStream.writeBytes( line + SPLIT_CHAR + index + "\n" );
+               sendMessage( line + index );
    				               
                //String[] splitLine = responseLine.split(" ");
                
@@ -223,6 +226,10 @@ class ClientHandler implements Runnable
                      receiveKart();
                      
                      break;
+                     
+                  default:
+                     String currentObject = (String)inputObject.readObject();
+                     System.out.println("Object Defaulted: " + currentObject);
                
                }
                
@@ -250,6 +257,11 @@ class ClientHandler implements Runnable
 			{
 				System.err.println("IOException: " + e);
 			}
+         catch (ClassNotFoundException e)
+         {
+            System.err.println("ClassNotFoundException: " + e);
+
+         }
 
       }
    }
@@ -272,13 +284,13 @@ class ClientHandler implements Runnable
             //Connection Loop
             //do
             //{
-      			if((line = inputStream.readLine()) != null)
+      			if((line = receiveMessage()) != null)
       			{
       				
                   outputStream.writeBytes( line + "\n" );
       			}
                
-               line = inputStream.readLine();
+               line = receiveMessage();
                
                if ( line.equals("CLOSE") )
                {
