@@ -197,14 +197,16 @@ class ClientHandler implements Runnable
                //line = scanner.nextLine(); 
                //index = scanner.nextLine();
 
-				   sendMessage( line + index );
+				   sendMessage( line + SPLIT_CHAR + index );
             
-   				if((line = receiveMessage()) != null)
+               String responce;
+            
+   				if((responce = receiveMessage()) != null)
    				{
    					System.out.println("SERVER: " + line);
    				}
                
-               sendMessage( line + index );
+               sendMessage( line + SPLIT_CHAR + index );
    				               
                //String[] splitLine = responseLine.split(" ");
                
@@ -284,12 +286,14 @@ class ClientHandler implements Runnable
             //Connection Loop
             //do
             //{
+               System.out.println("(Receive:Call1)");
       			if((line = receiveMessage()) != null)
       			{
-      				
-                  outputStream.writeBytes( line + "\n" );
+      				System.out.println("(Receive:Responce1)");
+                  sendMessage( line );
       			}
                
+               System.out.println("(Receive:Call2)");
                line = receiveMessage();
                
                if ( line.equals("CLOSE") )
@@ -307,6 +311,7 @@ class ClientHandler implements Runnable
                line = splitLine[0];
                int currentIndex = Integer.parseInt(splitLine[1]);
                
+               System.out.println("(Receive:Responce2File)");
                switch(line)
                {
                   case REQUEST_CONTROL:
