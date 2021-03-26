@@ -39,6 +39,7 @@ class ClientHandler implements Runnable
    private ObjectOutput outputObject = null;
    private ObjectInput inputObject = null;
    
+   private boolean connected;
    
    public ClientHandler(Socket server)
    {
@@ -69,6 +70,8 @@ class ClientHandler implements Runnable
          inputObject = new ObjectInputStream(
             server.getInputStream()
          );
+         
+         connected = true;
 		} 
 		catch (UnknownHostException e)
 		{
@@ -137,7 +140,7 @@ class ClientHandler implements Runnable
             
             index++;
 
-         } while(true);
+         } while(connected);
          
 			
 			// Comment out/remove the outputStream and server close statements if server should remain live
@@ -367,6 +370,7 @@ class ClientHandler implements Runnable
       catch (IOException e)
 		{
 			System.err.println("IOException:  " + e);
+         connected = false;
          return null;
       }
    }
@@ -384,6 +388,7 @@ class ClientHandler implements Runnable
 		catch (IOException e)
 		{
 			System.err.println("IOException:  " + e);
+         connected = false;
 		}
    }
    
@@ -404,6 +409,7 @@ class ClientHandler implements Runnable
 		catch (IOException e)
 		{
 			System.err.println("IOException:  " + e);
+         connected = false;
 		}
    }
    
@@ -420,6 +426,7 @@ class ClientHandler implements Runnable
 		catch (IOException e)
 		{
 			System.err.println("IOException:  " + e);
+         connected = false;
 		}
    }
    
@@ -440,6 +447,7 @@ class ClientHandler implements Runnable
 		catch (IOException e)
 		{
 			System.err.println("IOException:  " + e);
+         connected = false;
 		}
    }
    
