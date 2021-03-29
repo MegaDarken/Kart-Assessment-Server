@@ -112,6 +112,7 @@ class ClientHandler implements Runnable
          
          index = 0;
          
+         
          //Connection Loop
          do
          {
@@ -124,11 +125,28 @@ class ClientHandler implements Runnable
             
             line = REQUEST_KART;
             
-            System.out.print("Receiving: " + index);
-            receiveRequest();
+            //if line is received?
+               if ((line = receiveMessage()) != null)
+               {
+                  //Split line into parts
+                  String[] splitLine = line.split(SPLIT_CHAR);
+                  
+                  //Check length
+                  if(line.length() > 1)
+                  {
+                     line = splitLine[0];
+                     index = Integer.parseInt(splitLine[1]);
             
-            System.out.print("Sending: " + index);
-            sendRequest();
+                     System.out.print("Receiving: " + index);
+                     receiveRequest();
+                  }
+               }
+               else
+               {
+         
+                System.out.print("Sending: " + index);
+                sendRequest();
+               }
             
             //if ()
             if ( line.equals("CLOSE") )
@@ -199,6 +217,7 @@ class ClientHandler implements Runnable
                //System.out.print("CLIENT: ");
                //line = scanner.nextLine(); 
                //index = scanner.nextLine();
+               /*
 
 				   sendMessage( line + SPLIT_CHAR + index );
             
@@ -214,7 +233,7 @@ class ClientHandler implements Runnable
                //String[] splitLine = responseLine.split(" ");
                
                //line = splitLine[0];
-               
+               */
                switch(line)
                {
                   case REQUEST_CONTROL:
@@ -289,6 +308,7 @@ class ClientHandler implements Runnable
             //Connection Loop
             //do
             //{
+            /*
                System.out.println("(Receive:Call1)");
       			if((line = receiveMessage()) != null)
       			{
@@ -313,7 +333,7 @@ class ClientHandler implements Runnable
                //Check length
                line = splitLine[0];
                int currentIndex = Integer.parseInt(splitLine[1]);
-               
+               */
                System.out.println("(Receive:Responce2File)");
                switch(line)
                {
