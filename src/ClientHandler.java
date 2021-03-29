@@ -130,6 +130,8 @@ class ClientHandler implements Runnable
             //if line is received?
                if ((line = receiveMessage()) != null)
                {
+                  System.out.print("Receiving: " + index);
+               
                   //Split line into parts
                   String[] splitLine = line.split(SPLIT_CHAR);
                   
@@ -139,15 +141,15 @@ class ClientHandler implements Runnable
                      line = splitLine[0];
                      index = Integer.parseInt(splitLine[1]);
             
-                     System.out.print("Receiving: " + index);
                      receiveRequest();
                   }
                }
                else
                {
+                System.out.print("Sending: " + index);
+                
                 sendMessage(line + SPLIT_CHAR + index);
                 
-                System.out.print("Sending: " + index);
                 sendRequest();
                }
             
