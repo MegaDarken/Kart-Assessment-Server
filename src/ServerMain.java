@@ -66,14 +66,14 @@ class ServerMain
          {
             if (ClientHandler.ActiveClients() < MaxClients)
             {
-			   server = service.accept();
+   			   server = service.accept();
+               
+               ClientHandler handler = new ClientHandler(server);
             
-            ClientHandler handler = new ClientHandler(server);
-         
-            Thread t = new Thread(handler);
-            t.start();
-            
-            //activeClients++;
+               Thread t = new Thread(handler);
+               t.start();
+               
+               //activeClients++;
             }
             
             //Keep server open,
@@ -93,8 +93,12 @@ class ServerMain
 		}  
 		catch (IOException e)
 		{
-			System.out.println(e);
+			System.err.println("I/O Exception: " + e);
 		}
+      /*catch (BindException e)
+      {
+         System.err.println("Bind Exception: " + e);
+      }*/
 	}
 
 }
