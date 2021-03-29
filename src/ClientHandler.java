@@ -47,7 +47,7 @@ class ClientHandler implements Runnable
       
       scanner = new Scanner(System.in);
       
-      
+      System.out.println(server.getRemoteSocketAddress());
 		
 		try
 		{
@@ -88,6 +88,8 @@ class ClientHandler implements Runnable
       //Start Connection
       activeClients++;
    
+      System.out.println("Request: " + line);
+      
       try
       {
       /*
@@ -143,7 +145,8 @@ class ClientHandler implements Runnable
                }
                else
                {
-         
+                sendMessage(line + SPLIT_CHAR + index);
+                
                 System.out.print("Sending: " + index);
                 sendRequest();
                }
