@@ -90,6 +90,14 @@ class ClientHandler implements Runnable
    
       System.out.println("Request: " + line);
       
+      if (
+         server != null && 
+         outputStream != null && 
+         inputStream != null &&
+         outputObject != null &&
+         inputObject != null
+      ) {
+      
       try
       {
       /*
@@ -144,14 +152,13 @@ class ClientHandler implements Runnable
                      receiveRequest();
                   }
                }
-               else
-               {
-                System.out.print("Sending: " + index);
+               
+               System.out.print("Sending: " + index);
                 
-                sendMessage(line + SPLIT_CHAR + index);
+               sendMessage(line + SPLIT_CHAR + index);
                 
-                sendRequest();
-               }
+               sendRequest();
+               
             
             //if ()
             if ( line.equals("CLOSE") )
@@ -174,9 +181,14 @@ class ClientHandler implements Runnable
          {
             System.out.print("Exception thown." + e);
          }
+      }
+      else
+      {
+         System.out.println("Failed to run due to 'null' element");
+      }
          
-         //End Connection
-         activeClients--;
+      //End Connection
+      activeClients--;
    }
    
     public void CloseConnections()
@@ -262,7 +274,7 @@ class ClientHandler implements Runnable
                
                }
                
-               if((responseLine = inputStream.readLine()) != null)
+               /*if((responseLine = inputStream.readLine()) != null)
    				{
    					System.out.println("SERVER: " + responseLine);
    				}
@@ -271,9 +283,9 @@ class ClientHandler implements Runnable
                {
                   //Send signal to exit
                   //break;
-               }
+               }*/
                
-               AttemptSleep(10);
+               //AttemptSleep(10);
                
             //} while(true);
             
@@ -361,7 +373,7 @@ class ClientHandler implements Runnable
                }
 
                
-               AttemptSleep(1);
+               //AttemptSleep(1);
    
             //} while(true);
             
