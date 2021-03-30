@@ -326,35 +326,7 @@ class ClientHandler implements Runnable
          try 
          {
             
-            //Connection Loop
-            //do
-            //{
-            /*
-               System.out.println("(Receive:Call1)");
-      			if((line = receiveMessage()) != null)
-      			{
-      				System.out.println("(Receive:Responce1)");
-                  sendMessage( line );
-      			}
-               
-               System.out.println("(Receive:Call2)");
-               line = receiveMessage();
-               
-               if ( line.equals("CLOSE") )
-               {
-                  //Send signal to exit
-                  //break
-               }
-               
-               //Respond
-               
-               //Split line into parts
-               String[] splitLine = line.split(SPLIT_CHAR);
-               
-               //Check length
-               line = splitLine[0];
-               int currentIndex = Integer.parseInt(splitLine[1]);
-               */
+            
                System.out.println("(Receive:Responce2File)");
                switch(line)
                {
@@ -373,13 +345,15 @@ class ClientHandler implements Runnable
                      sendKart();
                      
                      break;
+                  
+                  default:
+                     String currentObject = (String)inputObject.readObject();
+                     System.out.println("Object Defaulted: " + currentObject);
                
                }
 
                
                //AttemptSleep(1);
-   
-            //} while(true);
             
          }
          catch (Exception e)
