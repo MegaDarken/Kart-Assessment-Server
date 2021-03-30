@@ -260,6 +260,8 @@ class ClientHandler implements Runnable
                
                //line = splitLine[0];
                */
+               System.out.println("(Send:Responce): " + line);
+               
                switch(line)
                {
                   case REQUEST_CONTROL:
@@ -332,7 +334,8 @@ class ClientHandler implements Runnable
          {
             
             
-               System.out.println("(Receive:Responce2File): " + line );
+               System.out.println("(Receive:Responce): " + line );
+               
                switch(line)
                {
                   case REQUEST_CONTROL:
