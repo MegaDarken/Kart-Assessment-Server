@@ -145,7 +145,7 @@ class ClientHandler implements Runnable
                String[] splitLine = line.split(SPLIT_CHAR);
                
                //Check length
-               if(splitLine.length() > 1)
+               if(splitLine.length > 1)
                {
                   line = splitLine[0];
                   index = Integer.parseInt(splitLine[1]);
