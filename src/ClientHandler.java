@@ -328,7 +328,7 @@ class ClientHandler implements Runnable
          inputObject != null
       ) {
       
-      String line = "";
+      //String line = "";
             
          try 
          {
