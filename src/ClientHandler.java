@@ -156,7 +156,7 @@ class ClientHandler implements Runnable
                }
             }
             
-            (line = receiveMessage());
+            System.out.print(receiveMessage());
             
             System.out.print("Sending: " + index);
              
@@ -332,7 +332,7 @@ class ClientHandler implements Runnable
          {
             
             
-               System.out.println("(Receive:Responce2File)");
+               System.out.println("(Receive:Responce2File): " + line );
                switch(line)
                {
                   case REQUEST_CONTROL:
@@ -352,8 +352,7 @@ class ClientHandler implements Runnable
                      break;
                   
                   default:
-                     String currentObject = (String)inputObject.readObject();
-                     System.out.println("Object Defaulted: " + currentObject);
+                     sendMessage("ERROR: DEFAULT!");
                
                }
 
