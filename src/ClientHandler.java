@@ -148,7 +148,9 @@ class ClientHandler implements Runnable
                   {
                      line = splitLine[0];
                      index = Integer.parseInt(splitLine[1]);
-            
+                     
+                     AttemptSleep(10);
+                     
                      receiveRequest();
                   }
                }
@@ -156,7 +158,9 @@ class ClientHandler implements Runnable
                System.out.print("Sending: " + index);
                 
                sendMessage(line + SPLIT_CHAR + index);
-                
+               
+               AttemptSleep(10);
+               
                sendRequest();
                
             
@@ -166,7 +170,7 @@ class ClientHandler implements Runnable
                break;
             }
             
-            AttemptSleep(1);
+            AttemptSleep(10);
             
             index++;
 
