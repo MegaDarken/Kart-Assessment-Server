@@ -10,6 +10,7 @@ class ClientHandler implements Runnable
    //Const
    private final String REQUEST_CONTROL = "control";
    private final String REQUEST_KART = "kart";
+   private final String CONTINUE_NOTE = "continue";
    
    private final String SPLIT_CHAR = " ";
 
@@ -136,39 +137,43 @@ class ClientHandler implements Runnable
             line = REQUEST_KART;
             
             //if line is received?
-               if ((line = receiveMessage()) != null)
+            if ((line = receiveMessage()) != null)
+            {
+               System.out.print("Receiving: " + index);
+            
+               //Split line into parts
+               String[] splitLine = line.split(SPLIT_CHAR);
+               
+               //Check length
+               if(line.length() > 1)
                {
-                  System.out.print("Receiving: " + index);
-               
-                  //Split line into parts
-                  String[] splitLine = line.split(SPLIT_CHAR);
+                  line = splitLine[0];
+                  index = Integer.parseInt(splitLine[1]);
                   
-                  //Check length
-                  if(line.length() > 1)
-                  {
-                     line = splitLine[0];
-                     index = Integer.parseInt(splitLine[1]);
-                     
-                     AttemptSleep(10);
-                     
-                     receiveRequest();
-                  }
+                  AttemptSleep(10);
+                  
+                  receiveRequest();
                }
-               
-               System.out.print("Sending: " + index);
-                
-               sendMessage(line + SPLIT_CHAR + index);
-               
-               AttemptSleep(10);
-               
-               sendRequest();
-               
+            }
+            
+            (line = receiveMessage());
+            
+            System.out.print("Sending: " + index);
+             
+            sendMessage(line + SPLIT_CHAR + index);
+            
+            AttemptSleep(10);
+            
+            sendRequest();
+            
+            sendMessage(CONTINUE_NOTE);  
             
             //if ()
             if ( line.equals("CLOSE") )
             {
                break;
             }
+            
             
             AttemptSleep(10);
             
