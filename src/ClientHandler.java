@@ -10,6 +10,8 @@ class ClientHandler implements Runnable
    //Const
    private final String REQUEST_CONTROL = "control";
    private final String REQUEST_KART = "kart";
+   private final String REQUEST_CLIENT_ID = "client_id";
+   
    private final String CONTINUE_NOTE = "continue";
    
    private final String SPLIT_CHAR = ";";
@@ -21,7 +23,8 @@ class ClientHandler implements Runnable
    {
       return activeClients;
    }
-
+   
+   private int hostKart;
    
    private Scanner scanner;// = new Scanner(System.in);
 
@@ -44,6 +47,8 @@ class ClientHandler implements Runnable
    
    public ClientHandler(Socket server)
    {
+      this.hostKart = -1;//None yet
+      
       this.server = server;
       
       scanner = new Scanner(System.in);
@@ -264,6 +269,12 @@ class ClientHandler implements Runnable
                
                switch(line)
                {
+                  case REQUEST_CLIENT:
+                     
+                     
+                     
+                     break;
+               
                   case REQUEST_CONTROL:
                      
                      //Get object
@@ -338,6 +349,12 @@ class ClientHandler implements Runnable
                
                switch(line)
                {
+                  case REQUEST_CLIENT:
+                     
+                     
+                     
+                     break;
+                     
                   case REQUEST_CONTROL:
                      
                      //Get object
