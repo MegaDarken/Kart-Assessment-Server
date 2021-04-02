@@ -269,9 +269,9 @@ class ClientHandler implements Runnable
                
                switch(line)
                {
-                  case REQUEST_CLIENT:
+                  case REQUEST_CLIENT_ID:
                      
-                     
+                     this.hostKart = Integer.parseInt(receiveMessage());
                      
                      break;
                
@@ -349,9 +349,9 @@ class ClientHandler implements Runnable
                
                switch(line)
                {
-                  case REQUEST_CLIENT:
+                  case REQUEST_CLIENT_ID:
                      
-                     
+                     sendMessage(Integer.toString(this.hostKart));
                      
                      break;
                      
