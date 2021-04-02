@@ -442,8 +442,11 @@ class ClientHandler implements Runnable
          //Collect kart
          RaceKart currentKart = (RaceKart) inputObject.readObject();
          
-         //Place into world
-         ServerMain.world.GetKarts()[index] = currentKart;
+         if (this.hostKart != index)
+         {
+            //Place into world
+            ServerMain.world.GetKarts()[index] = currentKart;
+         }
       }
       catch (ClassNotFoundException e)
       {
