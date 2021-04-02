@@ -442,7 +442,7 @@ class ClientHandler implements Runnable
          //Collect kart
          RaceKart currentKart = (RaceKart) inputObject.readObject();
          
-         if (this.hostKart != index)
+         if (this.hostKart == index)
          {
             //Place into world
             ServerMain.world.GetKarts()[index] = currentKart;
@@ -483,8 +483,11 @@ class ClientHandler implements Runnable
          //Collect control
          byte[] currentControl = (byte[]) inputObject.readObject();
          
-         //Place into world
-         ServerMain.world.GetControls()[index] = currentControl;
+         if (this.hostKart == index)
+         {
+            //Place into world
+            ServerMain.world.GetControls()[index] = currentControl;
+         }
       }
       catch (ClassNotFoundException e)
       {
