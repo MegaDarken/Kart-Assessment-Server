@@ -125,9 +125,13 @@ class ClientHandler implements Runnable
             server.getInputStream()
          );
          */
+         line = REQUEST_CLIENT_ID;
          
          index = 0;
          
+         sendRequest();
+         
+         //check is valid?
          
          //Connection Loop
          do
