@@ -21,6 +21,9 @@ class ServerMain
    
    public static void main( String args[] )
 	{
+      System.out.println("Race-Kart Assignment Server");
+
+      
       //Use Defaults
       int serverPort = DEFAULT_SERVER_PORT;
       
