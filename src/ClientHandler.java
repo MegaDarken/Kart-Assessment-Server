@@ -40,8 +40,8 @@ class ClientHandler implements Runnable
 		// Declare an output stream to client		
 	private DataOutputStream outputStream;
       
-   private ObjectOutput outputObject = null;
-   private ObjectInput inputObject = null;
+   private ObjectOutputStream outputObject = null;
+   private ObjectInputStream inputObject = null;
    
    private boolean connected;
    
@@ -445,6 +445,8 @@ class ClientHandler implements Runnable
    {
       try
       {
+         outputObject.reset();
+      
          // write object to stream
          outputObject.writeObject(ServerMain.world.GetKarts()[index]);
    
@@ -471,6 +473,14 @@ class ClientHandler implements Runnable
             ServerMain.world.GetKarts()[index] = currentKart;
             
             System.out.println("Gotten Client Kart: " + this.hostKart);
+            
+            //System.out.print(" CurrentKart - ");
+            //System.out.print(" X: " + currentKart.X());
+            //System.out.println(" Y: " + currentKart.Y());
+            
+            //System.out.print(" InWorld - ");
+            //System.out.print(" X: " + ServerMain.world.GetKarts()[index].X());
+            //System.out.println(" Y: " + ServerMain.world.GetKarts()[index].Y());
          }
       }
       catch (ClassNotFoundException e)
@@ -488,6 +498,8 @@ class ClientHandler implements Runnable
    {
       try
       {
+         outputObject.reset();
+      
          // write object to stream
          outputObject.writeObject(ServerMain.world.GetControls()[index]);
       
