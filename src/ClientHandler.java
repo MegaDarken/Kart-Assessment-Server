@@ -133,9 +133,30 @@ class ClientHandler implements Runnable
          
          //check is valid?
          
+         System.out.print("hostKart: " + this.hostKart);
+         
+         line = REQUEST_KART;
+         
          //Connection Loop
          do
          {
+            //Determine action
+            if (index >= ServerMain.world.GetKarts().length)
+            {
+               //Kart -> Control -> Kart
+               switch(line)
+               {
+                  case REQUEST_KART:
+                     line = REQUEST_CONTROL;
+                     break;
+                  
+                  case REQUEST_CONTROL:
+                     line = REQUEST_KART;
+                     break;
+               }
+            }
+
+         
             index = index % ServerMain.world.GetKarts().length;
          
    			/*if((line = inputStream.readLine()) != null)
@@ -143,7 +164,7 @@ class ClientHandler implements Runnable
    				outputStream.writeBytes( line + "\n" );
    			}*/
             
-            line = REQUEST_KART;
+            
             
             //if line is received?
             if ((line = receiveMessage()) != null)
