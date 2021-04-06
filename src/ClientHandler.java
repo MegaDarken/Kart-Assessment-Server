@@ -94,7 +94,9 @@ class ClientHandler implements Runnable
       //Start Connection
       activeClients++;
    
-      System.out.println("Request: " + line);
+      //System.out.println("Request: " + line);
+      
+      String continueMessage = "";
       
       if (
          server != null && 
@@ -169,7 +171,7 @@ class ClientHandler implements Runnable
             //if line is received?
             if ((line = receiveMessage()) != null)
             {
-               System.out.print("Receiving: " + line);
+               //System.out.print("Receiving: " + line);
             
                //Split line into parts
                String[] splitLine = line.split(SPLIT_CHAR);
@@ -186,9 +188,9 @@ class ClientHandler implements Runnable
                }
             }
             
-            System.out.print(receiveMessage());
+            continueMessage = receiveMessage();
             
-            System.out.print("Sending: " + index);
+            //System.out.print("Sending: " + index);
              
             sendMessage(line + SPLIT_CHAR + index);
             
@@ -290,7 +292,7 @@ class ClientHandler implements Runnable
                
                //line = splitLine[0];
                */
-               System.out.println("(Send:Responce): " + line);
+               //System.out.println("(Send:Responce): " + line);
                
                switch(line)
                {
@@ -370,7 +372,7 @@ class ClientHandler implements Runnable
          {
             
             
-               System.out.println("(Receive:Responce): " + line );
+               //System.out.println("(Receive:Responce): " + line );
                
                switch(line)
                {
@@ -467,6 +469,8 @@ class ClientHandler implements Runnable
          {
             //Place into world
             ServerMain.world.GetKarts()[index] = currentKart;
+            
+            System.out.println("Gotten Client Kart: " + this.hostKart);
          }
       }
       catch (ClassNotFoundException e)
@@ -508,6 +512,8 @@ class ClientHandler implements Runnable
          {
             //Place into world
             ServerMain.world.GetControls()[index] = currentControl;
+            
+            System.out.println("Gotten Client Controls: " + this.hostKart);
          }
       }
       catch (ClassNotFoundException e)
