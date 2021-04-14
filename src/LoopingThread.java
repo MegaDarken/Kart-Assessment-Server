@@ -20,9 +20,9 @@ public class LoopingThread implements Runnable
       {
       
          //Process World
+         Thread worldThread = new Thread(ServerMain.world);
          
-         
-         
+         worldThread.start();
          
          //Sleep
          
