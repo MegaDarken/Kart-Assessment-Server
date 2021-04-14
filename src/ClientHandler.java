@@ -182,7 +182,7 @@ class ClientHandler implements Runnable
                   line = splitLine[0];
                   index = Integer.parseInt(splitLine[1]);
                   
-                  AttemptSleep(10);
+                  //AttemptSleep(10);
                   
                   receiveRequest();
                }
@@ -194,7 +194,7 @@ class ClientHandler implements Runnable
              
             sendMessage(line + SPLIT_CHAR + index);
             
-            AttemptSleep(10);
+            //AttemptSleep(10);
             
             sendRequest();
             
@@ -207,7 +207,7 @@ class ClientHandler implements Runnable
             }
             
             
-            AttemptSleep(10);
+            //AttemptSleep(10);
             
             index++;
 
