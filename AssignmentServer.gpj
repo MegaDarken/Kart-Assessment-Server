@@ -17,13 +17,15 @@ s#n0classes
 s#p0doc
 s#q0test
 s#w0canvas
-!104;g
+!133;g
 %\011src%sClientHandler.java
 %\011src%sGameWorld.java
 %\011src%sRaceKart.java
+%\011src%sLoopingThread.java
 %\011src%sServerMain.java
-!104;f
+!133;f
 %\011src%sClientHandler.java
 %\011src%sGameWorld.java
 %\011src%sRaceKart.java
+%\011src%sLoopingThread.java
 %\011src%sServerMain.java
