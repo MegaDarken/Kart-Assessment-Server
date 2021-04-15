@@ -13,7 +13,7 @@ public class LoopingThread implements Runnable
    public LoopingThread()
    {
       _looping = true;
-      _sleepDuration = round(1000 / TICKS_PER_SECOND);
+      _sleepDuration = Math.round(1000 / TICKS_PER_SECOND);
       
    }
    
