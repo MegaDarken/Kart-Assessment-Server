@@ -36,6 +36,13 @@ class ServerMain
       //Initalize World
       world = new GameWorld();
       
+      //World Thread
+      LoopingThread loop = new LoopingThread();
+      
+      Thread worldThread = new Thread(loop);
+      
+      worldThread.start();      
+      
       //Launch server
       LaunchServer(serverPort);
    }
