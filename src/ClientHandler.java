@@ -472,7 +472,7 @@ class ClientHandler implements Runnable
             //Place into world
             ServerMain.world.GetKarts()[index] = currentKart;
             
-            System.out.println("Gotten Client Kart: " + this.hostKart);
+            //System.out.println("Gotten Client Kart: " + this.hostKart);
             
             //System.out.print(" CurrentKart - ");
             //System.out.print(" X: " + currentKart.X());
@@ -525,7 +525,7 @@ class ClientHandler implements Runnable
             //Place into world
             ServerMain.world.GetControls()[index] = currentControl;
             
-            System.out.println("Gotten Client Controls: " + this.hostKart);
+            //System.out.println("Gotten Client Controls: " + this.hostKart);
          }
       }
       catch (ClassNotFoundException e)
