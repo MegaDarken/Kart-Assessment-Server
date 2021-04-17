@@ -71,6 +71,7 @@ public class RaceKart implements Serializable
    
    private float Bearing;
    
+   private boolean collided;
    
    public RaceKart(String livery, int weight, double acceleration, double top_speed, double turning_speed, int carWidth, int carLength)
    {
@@ -251,6 +252,16 @@ public class RaceKart implements Serializable
       //System.out.println(output);
       
       return output;
+   }
+   
+   public boolean Collided()
+   {
+      return this.collided;
+   }
+   
+   public void Collided(boolean value)
+   {
+      this.collided = value;
    }
    
    private Point CornerPoint(float x, float y)
