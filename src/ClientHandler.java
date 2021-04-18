@@ -203,6 +203,8 @@ class ClientHandler implements Runnable
             //if ()
             if ( line.equals("CLOSE") )
             {
+               connected = false;
+            
                break;
             }
             
@@ -225,7 +227,7 @@ class ClientHandler implements Runnable
       }
       else
       {
-         System.out.println("Failed to run due to 'null' element");
+         System.out.println("Failed to run client handler, due to 'null' element");
       }
          
       //End Connection
