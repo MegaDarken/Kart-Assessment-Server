@@ -71,7 +71,10 @@ public class GameWorld implements Runnable
          
       
          
-         Karts[kart].TickForward(controls[kart]);
+         if (!Karts[kart].Collided())
+         {
+            Karts[kart].TickForward(controls[kart]);
+         }
          
          
          //Get Kart Image
