@@ -10,6 +10,7 @@ class ServerMain
    static final int DEFAULT_ACTIVE_CLIENTS = 0;
       
    static final int SOCKET_TIMEOUT = 1000;
+   static final long DEFAULT_INACTIVITY_TIMEOUT = 120000;//= 120 seconds = 2 mins
    
    static private ServerSocket service;
    
@@ -18,6 +19,9 @@ class ServerMain
    static GameWorld world;
    
    static private boolean Running;
+   
+   static private long inactivityTimeout;
+   static private long lastActiveTime;
    
    public static void main( String args[] )
 	{
@@ -29,6 +33,9 @@ class ServerMain
       
       MaxClients = DEFAULT_MAX_CLIENTS;
       //ActiveClients = DEFAULT_ACTIVE_CLIENTS;
+      
+      inactivityTimeout = DEFAULT_INACTIVITY_TIMEOUT;
+      lastActiveTime = System.currentTimeMillis();
       
       //Check ARGS
       
@@ -88,17 +95,29 @@ class ServerMain
             
             //Keep server open,
             
-            //Check connections? close if none are open
+            //Check connections? go to close if none are open
             
-            if (ClientHandler.ActiveClients() < 0)
+            if (ClientHandler.ActiveClients() <= 0)
             {
+               //Inactive for to long?
+               if (System.currentTimeMillis() - lastActiveTime >= inactivityTimeout)
+               {
             
-               //Stop server
-               Running = false;
+                  //Stop server
+                  Running = false;
+               }
             }
+            else
+            {
+               //Update last active time.
+               lastActiveTime = System.currentTimeMillis();
+            }
+            
          }
          while(Running);
 			
+         System.out.println("Inactive for longer than timeout period, server shutting down...");
+         
          server.close();
 		}  
 		catch (IOException e)
