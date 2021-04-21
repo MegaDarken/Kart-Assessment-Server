@@ -64,6 +64,8 @@ class ServerMain
 		try
 		{
 			service = new ServerSocket(port);
+         
+         service.setSoTimeout(SOCKET_TIMEOUT);
 		}
 		catch (IOException e)
 		{
@@ -83,14 +85,21 @@ class ServerMain
          {
             if (ClientHandler.ActiveClients() < MaxClients)
             {
-   			   server = service.accept();
+               try
+		         {
+   			      server = service.accept();
                
-               ClientHandler handler = new ClientHandler(server);
+                  ClientHandler handler = new ClientHandler(server);
             
-               Thread t = new Thread(handler);
-               t.start();
+                  Thread t = new Thread(handler);
+                  t.start();
                
-               //activeClients++;
+                  //activeClients++;
+               }
+               catch (SocketTimeoutException e)
+               {
+			         System.err.println("Socket Exception: " + e);
+		         }
             }
             
             //Keep server open,
