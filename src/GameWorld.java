@@ -30,17 +30,17 @@ public class GameWorld implements Runnable
 //       }
       
       //Debug
-      Karts[0] = new RaceKart("Red", 1, 1, 50, Math.PI*0.05, 10, 20);
-      Karts[0].SetPosition(210, 210);
+      //Karts[0] = new RaceKart("Red", 1, 1, 50, Math.PI*0.05, 10, 20);
+      //Karts[0].SetPosition(210, 210);
       
-      Karts[1] = new RaceKart("Green", 1, 1, 50, Math.PI*0.05, 10, 20);
-      Karts[1].SetPosition(110, 210);
+      //Karts[1] = new RaceKart("Green", 1, 1, 50, Math.PI*0.05, 10, 20);
+      //Karts[1].SetPosition(110, 210);
       
-      Karts[2] = new RaceKart("Blue", 1, 1, 50, Math.PI*0.05, 10, 20);
-      Karts[2].SetPosition(210, 110);
+      //Karts[2] = new RaceKart("Blue", 1, 1, 50, Math.PI*0.05, 10, 20);
+      //Karts[2].SetPosition(210, 110);
       
-      Karts[3] = new RaceKart("Bot", 1, 1, 50, Math.PI*0.05, 10, 20);
-      Karts[3].SetPosition(110, 110);
+      //Karts[3] = new RaceKart("Bot", 1, 1, 50, Math.PI*0.05, 10, 20);
+      //Karts[3].SetPosition(110, 110);
    }
    
    public int GetClientKart()
@@ -69,20 +69,21 @@ public class GameWorld implements Runnable
       for(int kart = 0; kart < MAXIMUM_RACEKARTS; kart++)
       {
          
-      
-         
-         if (!Karts[kart].Collided())
+         if (Karts[kart] != null)
          {
-            Karts[kart].TickForward(controls[kart]);
+         
+            if (!Karts[kart].Collided())
+            {
+               Karts[kart].TickForward(controls[kart]);
+            }
+            
+            
+            //Get Kart Image
+            
+            //Get Corrisonding label
+            
+            // Apply Image to label
          }
-         
-         
-         //Get Kart Image
-         
-         //Get Corrisonding label
-         
-         // Apply Image to label
-         
       }
       
    }
