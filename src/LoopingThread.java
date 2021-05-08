@@ -29,6 +29,10 @@ public class LoopingThread implements Runnable
       }
    }
    
+   public void StopLoop()
+   {
+      this._looping = false;
+   }
 
    public void run()
    {
