@@ -101,6 +101,14 @@ class ServerMain
                {
 			         System.err.println("Socket Exception: " + e);
 		         }
+               catch (BindException e)
+               {
+                  System.err.println("Bind Exception: " + e);
+                  
+                  Running = false;
+                  
+                  loop.StopLoop();
+               }
             }
             
             //Keep server open,
@@ -135,6 +143,7 @@ class ServerMain
 		catch (IOException e)
 		{
 			System.err.println("I/O Exception: " + e);
+         
 		}
       /*catch (BindException e)
       {
