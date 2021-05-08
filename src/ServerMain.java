@@ -17,6 +17,7 @@ class ServerMain
    static private int MaxClients;
    //static private int ActiveClients;
    static GameWorld world;
+   static LoopingThread loop;
    
    static private boolean Running;
    
@@ -44,7 +45,7 @@ class ServerMain
       world = new GameWorld();
       
       //World Thread
-      LoopingThread loop = new LoopingThread();
+      loop = new LoopingThread();
       
       Thread worldThread = new Thread(loop);
       
@@ -114,6 +115,8 @@ class ServerMain
             
                   //Stop server
                   Running = false;
+                  
+                  loop.StopLoop();
                }
             }
             else
